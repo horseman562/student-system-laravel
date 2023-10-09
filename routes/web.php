@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CustomAuthController;
-
+use App\Http\Controllers\Test;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,10 +26,19 @@ Route::get('/view-student', [CustomAuthController::class, 'viewStudents'])->midd
 Route::delete('/view-student/{user}', [CustomAuthController::class, 'deleteStudent']);
 Route::get('/view-student/{user}/edit', [CustomAuthController::class, 'editStudentView']);
 Route::put('/view-student/edit/{user}', [CustomAuthController::class, 'updateStudent']);
+
+
+//
+/* Route::get('/login', [CustomAuthController::class, 'login'])->middleware('alreadyLoggedIn'); */
 Route::get('/login', [CustomAuthController::class, 'login'])->middleware('alreadyLoggedIn');
+Route::post('/login-user', [CustomAuthController::class, 'loginUser'])->name('login-user');
+
+
+Route::get('/test', [Test::class, 'index']);
+
 Route::get('/register', [CustomAuthController::class, 'registration'])->middleware('alreadyLoggedIn');
 Route::post('/register-user', [CustomAuthController::class, 'registerUser'])->name('register-user');
-Route::post('/login-user', [CustomAuthController::class, 'loginUser'])->name('login-user');
+
 Route::get('/dashboard', [CustomAuthController::class, 'dashboard'])->middleware('isLoggedIn');
 Route::get('/student-home', [CustomAuthController::class, 'studentHome'])->middleware('isLoggedIn');
 Route::get('/admin-home', [CustomAuthController::class, 'adminHome'])->middleware('isLoggedIn');

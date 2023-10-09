@@ -36,6 +36,7 @@ class CustomAuthController extends Controller
         $user = new User();
         $user->name = $request->username;
         $user->email = $request->email;
+        $user->usertype = 'student';
         $user->password = Hash::make($request->password);
         $res = $user->save();
         if ($res) {
@@ -48,14 +49,17 @@ class CustomAuthController extends Controller
 
     public function loginUser(Request $request)
     {
-        $request->validate([
 
+
+        $request->validate([
             'username' => 'required',
             /* Uniq EMail Only Meaning Only One Name Email is Allowed */
             /* 'email' => 'required|email|unique:users', */
             'password' => 'required|min:5|max:12',
         ]);
+
         $user = User::where('name', '=', $request->username)->first();
+
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
 
@@ -304,9 +308,11 @@ class CustomAuthController extends Controller
     public function viewTeachers()
     {
         $data = User::where('usertype', '=', 'teacher')->get();
-        $data = Teacher::all();
 
-        return view('admin.view-teacher', compact('data'));
+
+        $naqi = Teacher::all();
+
+        return view('admin.view-teacher', compact('naqi'));
     }
 
     public function deleteTeacher(Teacher $teacher)

@@ -7,10 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
 
@@ -25,14 +23,13 @@
 
                 {{-- <h4>
                     <?php
-
+                    
                     error_reporting(0);
                     session_start();
                     session_destroy();
-
+                    
                     echo $_SESSION['loginMessage'];
-
-
+                    
                     ?>
 
                 </h4> --}}
@@ -57,33 +54,42 @@
 
             </form> -->
 
-            <form action="{{route('login-user')}}" method="POST" class="login_form">
+            <form action="{{ route('login-user') }}" method="POST" class="login_form">
                 @csrf
-                @if(Session::has('success'))
-                <div class="alert alert-success">{{Session::get('success')}}</div>
+                @if (Session::has('success'))
+                    <div class="alert alert-success">{{ Session::get('success') }}</div>
                 @endif
-                @if(Session::has('fail'))
-                <div class="alert alert-danger">{{Session::get('fail')}}</div>
+
+
+                @if (Session::has('fail'))
+                    <div class="alert alert-danger">{{ Session::get('fail') }}</div>
                 @endif
+
                 <div>
                     <label class="label_deg">Username</label>
-                    <input type="text" name="username" value="{{old('username')}}">
+                    <input type="text" name="username" value="{{ old('username') }}">
                     <br>
-                    <span class="text-danger" style="font-size: 14px;" >@error('username'){{$message}} @enderror</span>
+                    <span class="text-danger" style="font-size: 14px;">
+                        @error('username')
+                            {{ $message }}
+                        @enderror
+                    </span>
                 </div>
 
                 <div>
                     <label class="label_deg">Password</label>
                     <input type="password" name="password">
                     <br>
-                    <span class="text-danger"style="font-size: 14px;" >@error('password'){{$message}} @enderror</span>
+                    <span class="text-danger"style="font-size: 14px;">
+                        @error('password')
+                            {{ $message }}
+                        @enderror
+                    </span>
                 </div>
 
                 <div>
                     <button class="btn btn-primary" type="submit" name="submit">Login</button>
                 </div>
-
-
             </form>
 
 
@@ -93,9 +99,15 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
